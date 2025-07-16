@@ -17,7 +17,6 @@ class ProgramStudi extends Model
     protected $keyType = 'string'; // Change to 'int' if ProdiID is numeric
 
     protected $fillable = [
-        'ProdiID',
         'Nama',
         'Foto',
         'Tahun_Berdiri',

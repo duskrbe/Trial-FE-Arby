@@ -8,39 +8,57 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\ProgramStudi;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProgramStudiResource\Pages;
 use App\Filament\Resources\ProgramStudiResource\RelationManagers;
-use Filament\Forms\Components\RichEditor;
-use Filament\Tables\Columns\ImageColumn;
 
 class ProgramStudiResource extends Resource
 {
     protected static ?string $model = ProgramStudi::class;
-    
-    protected static ?string $navigationGroup = 'Menu';
-    protected static ?string $navigationIcon = 'heroicon-o-inbox-stack';
-    protected static ?string $navigationLabel = 'Program Studi';
-    protected static ?string $pluralModelLabel = 'Data Program Studi';
+
+    protected static ?string $navigationIcon = 'heroicon-o-book-open';
+    protected static ?string $modelLabel = 'Program Studi';
+    protected static ?string $pluralModelLabel = 'Program Studi';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('Nama')
-                    ->required(),
-                FileUpload::make('Foto')
-                    ->image()
-                    ->default(null)
-                    ->required(),
-                TextInput::make('Tahun_Berdiri'),
-                RichEditor::make('Deskripsi')
-                    ->columnSpanFull(),
+                Section::make('Informasi Program Studi')
+                    ->description('Isi detail lengkap mengenai Program Studi')
+                    ->schema([
+                        TextInput::make('Nama')
+                        ->label('Nama Program Studi')
+                        ->required()
+                        ->maxLength(255),
+                        FileUpload::make('Foto')
+                        ->label('Foto Program Studi')
+                        ->image()
+                        ->directory('program_studi_photos')
+                        ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                        ->maxSize(5120)
+                        ->required(),
+                        TextInput::make('Tahun_Berdiri')
+                        ->label('Tahun Berdiri')
+                        ->numeric()
+                        ->rules(['required', 'digits:4', 'min:1900', 'max:' . now()->year]) // Validasi tahun
+                        ->placeholder('Contoh: 2005')
+                        ->required(),
+                        Textarea::make('Deskripsi') 
+                        ->label('Deskripsi Program Studi')
+                        ->rows(5)
+                        ->cols(10)
+                        ->nullable() 
+                        ->placeholder('Tulis deskripsi lengkap mengenai Program Studi DKV...'),
+                    ])
             ]);
     }
 
@@ -48,31 +66,35 @@ class ProgramStudiResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('Foto')
+                    ->label('Foto Program Studi'),
+
                 TextColumn::make('Nama')
-                    ->searchable(),
-                ImageColumn::make('Foto'),
+                    ->label('Nama Program Studi')
+                    ->searchable() 
+                    ->sortable(),
+                
                 TextColumn::make('Tahun_Berdiri')
-                    ->label('Tahun berdiri'),
-                TextColumn::make('Deskripsi'),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Tahun Berdiri')
+                    ->searchable() 
+                    ->sortable(), 
+                
+                TextColumn::make('Deskripsi')
+                    ->label('Deskripsi Program Studi')
+                    ->limit(50),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 
