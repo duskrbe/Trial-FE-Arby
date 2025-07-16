@@ -11,6 +11,11 @@ class ProgramStudi extends Model
 
     protected $table = 'program_studi';
 
+    protected $primaryKey = 'ProdiID'; // Tell Laravel to use ProdiID as the PK
+
+    public $incrementing = false; // If ProdiID is not auto-incrementing
+    protected $keyType = 'string'; // Change to 'int' if ProdiID is numeric
+
     protected $fillable = [
         'ProdiID',
         'Nama',
