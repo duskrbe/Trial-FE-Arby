@@ -35,4 +35,9 @@ class ProgramStudi extends Model
     {
         return $this->hasMany(Akreditasi::class, 'prodi_id');
     }
+    
+    public function prospek_karir()
+    {
+        return $this->hasMany(ProspekKarir::class, 'prodi_id');
+    }
 }
