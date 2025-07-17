@@ -15,7 +15,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AkreditasiResource\Pages;
 use App\Filament\Resources\AkreditasiResource\RelationManagers;
+use Doctrine\DBAL\Schema\View;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\ViewAction;
 
 class AkreditasiResource extends Resource
 {
@@ -71,6 +73,7 @@ class AkreditasiResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                ViewAction::make(),
                 // Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
