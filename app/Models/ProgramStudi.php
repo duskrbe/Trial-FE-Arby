@@ -23,6 +23,14 @@ class ProgramStudi extends Model
         'deskripsi',
     ];
 
+        /**
+     * Relasi: Satu ProgramStudi punya banyak BannerProdi
+     */
+    public function bannerProdis()
+    {
+        return $this->hasMany(BannerProdi::class, 'prodi_id');
+    }
+
     public function akreditasi()
     {
         return $this->hasMany(Akreditasi::class, 'prodi_id');
