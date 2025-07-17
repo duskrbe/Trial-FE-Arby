@@ -40,4 +40,9 @@ class ProgramStudi extends Model
     {
         return $this->hasMany(ProspekKarir::class, 'prodi_id');
     }
+
+    public function prestasi()
+    {
+        return $this->hasMany(Prestasi::class, 'prodi_id');
+    }
 }

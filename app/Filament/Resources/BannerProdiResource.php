@@ -51,7 +51,7 @@ class BannerProdiResource extends Resource
                         ->rows(5)
                         ->cols(10)
                         ->nullable() 
-                        ->placeholder('Tulis deskripsi mengenai Banner Prodi DKV...'),
+                        ->placeholder('Tulis deskripsi mengenai Banner Prodi...'),
                         Select::make('prodi_id') 
                         ->label('Program Studi')
                         ->preload()
