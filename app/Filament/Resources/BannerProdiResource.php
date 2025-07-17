@@ -75,7 +75,7 @@ class BannerProdiResource extends Resource
 
                 TextColumn::make('prodi.nama')
                     ->label('Program Studi')
-                    ->limit(50),
+                    ->searchable(),
             
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi Banner')
