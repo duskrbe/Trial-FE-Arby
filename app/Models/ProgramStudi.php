@@ -22,4 +22,9 @@ class ProgramStudi extends Model
         'tahun_berdiri',
         'deskripsi',
     ];
+
+    public function akreditasi()
+    {
+        return $this->hasMany(Akreditasi::class, 'prodi_id');
+    }
 }
