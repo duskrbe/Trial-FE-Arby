@@ -37,6 +37,11 @@ class ProspekKarirResource extends Resource
                     ->label('Nama Prospek Karir')
                     ->required()
                     ->maxLength(255),
+                    Select::make('prodi_id')
+                    ->label('Program Studi')
+                    ->preload()
+                    ->relationship('prodi', 'nama')
+                    ->required(),
                     TextArea::make('deskripsi')
                     ->label('Deskripsi Prospek Karir')
                     ->rows(5)
@@ -50,11 +55,6 @@ class ProspekKarirResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->placeholder('Tambahkan foto Prospek Karir... (Opsional)')
                     ->maxSize(5120),
-                    Select::make('prodi_id')
-                    ->label('Program Studi')
-                    ->preload()
-                    ->relationship('prodi', 'nama')
-                    ->required(),
                 ])
             ]);
     }

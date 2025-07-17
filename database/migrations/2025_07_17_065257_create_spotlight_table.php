@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('spotlight', function (Blueprint $table) {
             $table->id();
+            $table->string('judul', 255);
+            $table->enum('kategori', ['Berita Terbaru', 'Acara Mendatang', 'Kegiatan Mahasiswa']);
+            $table->text('deskripsi')->nullable();
+            $table->date('tanggal');
+            $table->string('foto', 255)->nullable();
+            $table->string('banner', 255)->nullable();
+            $table->foreignId('prodi_id')->constrained('program_studi','id')->onDelete('cascade');
             $table->timestamps();
         });
     }
