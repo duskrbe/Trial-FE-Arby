@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('akreditasi', function (Blueprint $table) {
+        Schema::create('prospek_karir', function (Blueprint $table) {
             $table->id();
-            $table->string('foto', 255);
-            $table->text('deskripsi');  
+            $table->string('nama', 255);
+            $table->string('foto', 255)->nullable();
+            $table->text('deskripsi')->nullable();
             $table->foreignId('prodi_id')->constrained('program_studi','id')->onDelete('cascade');
             $table->timestamps();
         });
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('akreditasi');
+        Schema::dropIfExists('prospek_karir');
     }
 };
