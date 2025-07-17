@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('program_studi', function (Blueprint $table) {
-            $table->id('ProdiID');
-            $table->string('Nama', 255);
-            $table->string('Foto', 255)->nullable();
-            $table->year('Tahun_Berdiri')->nullable();
-            $table->text('Deskripsi')->nullable();
+            $table->id();
+            $table->string('nama', 255);
+            $table->string('foto', 255)->nullable();
+            $table->year('tahun_berdiri')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }

@@ -35,24 +35,24 @@ class ProgramStudiResource extends Resource
                 Section::make('Informasi Program Studi')
                     ->description('Isi detail lengkap mengenai Program Studi')
                     ->schema([
-                        TextInput::make('Nama')
+                        TextInput::make('nama')
                         ->label('Nama Program Studi')
                         ->required()
                         ->maxLength(255),
-                        FileUpload::make('Foto')
+                        FileUpload::make('foto')
                         ->label('Foto Program Studi')
                         ->image()
                         ->directory('program_studi_photos')
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                         ->maxSize(5120)
                         ->required(),
-                        TextInput::make('Tahun_Berdiri')
+                        TextInput::make('tahun_berdiri')
                         ->label('Tahun Berdiri')
                         ->numeric()
                         ->rules(['required', 'digits:4', 'min:1900', 'max:' . now()->year]) // Validasi tahun
                         ->placeholder('Contoh: 2005')
                         ->required(),
-                        Textarea::make('Deskripsi') 
+                        Textarea::make('deskripsi') 
                         ->label('Deskripsi Program Studi')
                         ->rows(5)
                         ->cols(10)
@@ -66,20 +66,20 @@ class ProgramStudiResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('Foto')
+                ImageColumn::make('foto')
                     ->label('Foto Program Studi'),
 
-                TextColumn::make('Nama')
+                TextColumn::make('nama')
                     ->label('Nama Program Studi')
                     ->searchable() 
                     ->sortable(),
                 
-                TextColumn::make('Tahun_Berdiri')
+                TextColumn::make('tahun_berdiri')
                     ->label('Tahun Berdiri')
                     ->searchable() 
                     ->sortable(), 
                 
-                TextColumn::make('Deskripsi')
+                TextColumn::make('deskripsi')
                     ->label('Deskripsi Program Studi')
                     ->limit(50),
             ])

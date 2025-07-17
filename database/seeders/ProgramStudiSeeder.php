@@ -21,24 +21,24 @@ class ProgramStudiSeeder extends Seeder
 
         // Membuat data dummy untuk Program Studi
         ProgramStudi::create([
-            'Nama' => 'Desain Komunikasi Visual',
-            'Foto' => 'https://picsum.photos/seed/dkv/600/400', // Sesuaikan path ini
-            'Tahun_Berdiri' => 2005,
-            'Deskripsi' => 'Program Studi Desain Komunikasi Visual (DKV) di IWU fokus pada pengembangan kreativitas dan inovasi dalam media visual. Mahasiswa akan mempelajari berbagai disiplin ilmu seperti desain grafis, ilustrasi, fotografi, videografi, dan multimedia interaktif.',
+            'nama' => 'Desain Komunikasi Visual',
+            'foto' => 'https://picsum.photos/seed/dkv/600/400', // Sesuaikan path ini
+            'tahun_berdiri' => 2005,
+            'deskripsi' => 'Program Studi Desain Komunikasi Visual (DKV) di IWU fokus pada pengembangan kreativitas dan inovasi dalam media visual. Mahasiswa akan mempelajari berbagai disiplin ilmu seperti desain grafis, ilustrasi, fotografi, videografi, dan multimedia interaktif.',
         ]);
 
         ProgramStudi::create([
-            'Nama' => 'Desain Produk',
-            'Foto' => 'https://picsum.photos/seed/dkv/600/400', // Sesuaikan path ini
-            'Tahun_Berdiri' => 2010,
-            'Deskripsi' => 'Program Studi Desain Produk mempersiapkan mahasiswa untuk menjadi desainer produk yang inovatif, mampu menciptakan produk-produk yang fungsional, estetis, dan berkelanjutan. Fokus pada proses desain dari ideation hingga prototipe.',
+            'nama' => 'Desain Produk',
+            'foto' => 'https://picsum.photos/seed/dkv/600/400', // Sesuaikan path ini
+            'tahun_berdiri' => 2010,
+            'deskripsi' => 'Program Studi Desain Produk mempersiapkan mahasiswa untuk menjadi desainer produk yang inovatif, mampu menciptakan produk-produk yang fungsional, estetis, dan berkelanjutan. Fokus pada proses desain dari ideation hingga prototipe.',
         ]);
 
         ProgramStudi::create([
-            'Nama' => 'Tata Busana',
-            'Foto' => 'https://picsum.photos/seed/dkv/600/400', // Sesuaikan path ini
-            'Tahun_Berdiri' => 1998,
-            'Deskripsi' => 'Prodi Tata Busana membekali mahasiswa dengan pengetahuan dan keterampilan di bidang fashion, mulai dari desain, pola, produksi, hingga manajemen bisnis fashion. Mengembangkan desainer busana yang berdaya saing global.',
+            'nama' => 'Tata Busana',
+            'foto' => 'https://picsum.photos/seed/dkv/600/400', // Sesuaikan path ini
+            'tahun_berdiri' => 1998,
+            'deskripsi' => 'Prodi Tata Busana membekali mahasiswa dengan pengetahuan dan keterampilan di bidang fashion, mulai dari desain, pola, produksi, hingga manajemen bisnis fashion. Mengembangkan desainer busana yang berdaya saing global.',
         ]);
 
         // Opsional: Untuk foto dummy, kamu bisa menempatkan gambar kosong atau placeholder
