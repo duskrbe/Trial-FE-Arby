@@ -21,6 +21,10 @@ class Spotlight extends Model
         'prodi_id',
     ];
 
+    protected $casts = [
+        'tanggal' => 'date',
+    ];
+
     public function prodi()
     {
         return $this->belongsTo(ProgramStudi::class, 'prodi_id');
