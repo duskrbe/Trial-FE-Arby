@@ -46,6 +46,7 @@ class AkreditasiResource extends Resource
                     ->placeholder('Tulis deskripsi lengkap mengenai Akreditasi...'),
                     Select::make('prodi_id')
                     ->label('Program Studi')
+                    ->preload()
                     ->relationship('prodi', 'nama')
                     ->required(),
                 ])
