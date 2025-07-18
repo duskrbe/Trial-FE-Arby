@@ -63,14 +63,14 @@ class MataKuliahResource extends Resource
                 TextColumn::make('nama')
                 ->label('Nama Mata Kuliah')
                 ->searchable(),
-                TextColumn::make('prodi.nama')
-                ->label('Program Studi')
-                ->searchable(),
                 TextColumn::make('semester')
                 ->label('Semester')
                 ->searchable(),
                 TextColumn::make('sks')
                 ->label('SKS')
+                ->searchable(),
+                TextColumn::make('prodi.nama')
+                ->label('Program Studi')
                 ->searchable(),
             ])
             ->filters([
