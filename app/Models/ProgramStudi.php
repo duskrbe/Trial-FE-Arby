@@ -50,4 +50,9 @@ class ProgramStudi extends Model
     {
         return $this->hasMany(Penelitian::class, 'prodi_id');
     }
+
+    public function matakuliah()
+    {
+        return $this->hasMany(MataKuliah::class, 'prodi_id');
+    }
 }

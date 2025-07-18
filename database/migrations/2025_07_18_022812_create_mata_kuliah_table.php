@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('mata_kuliah', function (Blueprint $table) {
             $table->id();
+            $table->string('nama', 255);
+            $table->integer('semester');
+            $table->integer('sks');
+            $table->foreignId('prodi_id')->constrained('program_studi','id')->onDelete('cascade');
             $table->timestamps();
         });
     }
