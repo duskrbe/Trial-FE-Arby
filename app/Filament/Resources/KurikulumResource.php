@@ -57,7 +57,7 @@ class KurikulumResource extends Resource
                 TextColumn::make('nama')
                 ->label('Nama Kurikulum')
                 ->searchable(),
-                TextColumn::make('deskrips')
+                TextColumn::make('deskripsi')
                 ->label('Deskripsi Kurikulum')
                 ->limit(25),
                 TextColumn::make('prodi.nama')

@@ -2,20 +2,23 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MataKuliahResource\Pages;
-use App\Filament\Resources\MataKuliahResource\RelationManagers;
-use App\Models\MataKuliah;
 use Filament\Forms;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Form;
+use App\Models\MataKuliah;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
+use Filament\Tables\Columns\TagsColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\MataKuliahResource\Pages;
+use App\Filament\Resources\MataKuliahResource\RelationManagers;
 
 class MataKuliahResource extends Resource
 {
@@ -50,7 +53,12 @@ class MataKuliahResource extends Resource
                     ->required()
                     ->numeric()
                     ->minValue(1),
-                   
+                    Select::make('kurikulum')
+                    ->label('Kurikulum')
+                    ->relationship('kurikulum', 'nama')
+                    ->multiple()
+                    ->searchable()
+                    ->preload(),
                 ])
                 ->columns(2)
             ]);
@@ -72,9 +80,29 @@ class MataKuliahResource extends Resource
                 TextColumn::make('prodi.nama')
                 ->label('Program Studi')
                 ->searchable(),
+                BadgeColumn::make('kurikulum')
+                ->getStateUsing(fn ($record) => $record->kurikulum?->pluck('nama')->toArray() ?? [])
+                ->color('success'),
             ])
             ->filters([
-                //
+                SelectFilter::make('kurikulum')
+                    ->relationship('kurikulum', 'nama')
+                    ->preload()
+                    ->multiple(),
+                SelectFilter::make('prodi')
+                    ->relationship('prodi', 'nama')
+                    ->label('Program Studi')
+                    ->preload()
+                    ->multiple(),
+                SelectFilter::make('sks')
+                    ->label('SKS')
+                    ->options(fn () => MataKuliah::query()->distinct()->pluck('sks', 'sks')->toArray())
+                    ->multiple(),
+                SelectFilter::make('semester')
+                    ->label('Semester')
+                    ->options(fn () => MataKuliah::query()->distinct()->pluck('semester', 'semester')->toArray())
+                    ->multiple(),
+                    
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
