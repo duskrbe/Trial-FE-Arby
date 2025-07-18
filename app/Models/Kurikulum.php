@@ -21,4 +21,9 @@ class Kurikulum extends Model
     {
         return $this->belongsTo(ProgramStudi::class, 'prodi_id');
     }
+
+    public function mataKuliah()
+    {
+        return $this->belongsToMany(MataKuliah::class, 'kurikulum_mata_kuliah', 'kurikulum_id', 'mata_kuliah_id');
+    }
 }
