@@ -40,17 +40,17 @@ class AkreditasiResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(5120)
                     ->required(),
+                    Select::make('prodi_id')
+                    ->label('Program Studi')
+                    ->preload()
+                    ->relationship('prodi', 'nama')
+                    ->required(),
                     Textarea::make('deskripsi') 
                     ->label('Deskripsi Akreditasi')
                     ->rows(5)
                     ->cols(10)
                     ->nullable() 
                     ->placeholder('Tulis deskripsi lengkap mengenai Akreditasi...'),
-                    Select::make('prodi_id')
-                    ->label('Program Studi')
-                    ->preload()
-                    ->relationship('prodi', 'nama')
-                    ->required(),
                 ])
             ]);
     }
