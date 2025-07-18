@@ -45,4 +45,9 @@ class ProgramStudi extends Model
     {
         return $this->hasMany(Prestasi::class, 'prodi_id');
     }
+
+    public function penelitian()
+    {
+        return $this->hasMany(Penelitian::class, 'prodi_id');
+    }
 }
