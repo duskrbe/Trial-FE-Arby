@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\MitraResource\Pages;
@@ -20,8 +21,9 @@ use App\Filament\Resources\MitraResource\RelationManagers;
 class MitraResource extends Resource
 {
     protected static ?string $model = Mitra::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Mitra';
+    protected static ?string $pluralModelLabel = 'Mitra';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     public static function form(Form $form): Form
     {
@@ -30,6 +32,10 @@ class MitraResource extends Resource
                 Section::make('Informasi Mitra')
                 ->description('Isi detail lengkap mengenai Mitra')
                 ->schema([
+                    TextInput::make('nama')
+                    ->label('Nama Prospek Karir')
+                    ->required()
+                    ->maxLength(255),
                     FileUpload::make('foto')
                     ->label('Foto Mitra')
                     ->image()
@@ -56,8 +62,11 @@ class MitraResource extends Resource
     {
         return $table
             ->columns([
-               Tables\Columns\ImageColumn::make('foto')
+                Tables\Columns\ImageColumn::make('foto')
                 ->label('Foto Mitra'),
+                Tables\Columns\TextColumn::make('nama')
+                ->label('Nama Mitra')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('prodi.nama')
                 ->label('Program Studi')
                 ->searchable(),

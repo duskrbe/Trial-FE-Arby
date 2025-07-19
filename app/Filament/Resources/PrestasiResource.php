@@ -31,6 +31,10 @@ class PrestasiResource extends Resource
                 Section::make('Informasi Prestasi')
                 ->description('Isi detail lengkap mengenai Prestasi')
                 ->schema([
+                    TextInput::make('nama')
+                    ->label('Nama Prospek Karir')
+                    ->required()
+                    ->maxLength(255),
                     FileUpload::make('foto')
                     ->label('Foto Prestasi')
                     ->image()
@@ -59,6 +63,9 @@ class PrestasiResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('foto')
                 ->label('Foto Prestasi'),
+                Tables\Columns\TextColumn::make('nama')
+                ->label('Nama Prestasi')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('prodi.nama')
                 ->label('Program Studi')
                 ->searchable(),
