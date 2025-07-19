@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Prestasi;
+use App\Models\Mitra;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -13,37 +13,36 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\PrestasiResource\Pages;
+use App\Filament\Resources\MitraResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PrestasiResource\RelationManagers;
+use App\Filament\Resources\MitraResource\RelationManagers;
 
-class PrestasiResource extends Resource
+class MitraResource extends Resource
 {
-    protected static ?string $model = Prestasi::class;
-    protected static ?string $modelLabel = 'Prestasi';
-    protected static ?string $pluralModelLabel = 'Prestasi';
-    protected static ?string $navigationIcon = 'heroicon-o-trophy';
+    protected static ?string $model = Mitra::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Section::make('Informasi Prestasi')
-                ->description('Isi detail lengkap mengenai Prestasi')
+           ->schema([
+                Section::make('Informasi Mitra')
+                ->description('Isi detail lengkap mengenai Mitra')
                 ->schema([
                     FileUpload::make('foto')
-                    ->label('Foto Prestasi')
+                    ->label('Foto Mitra')
                     ->image()
-                    ->directory('prestasi_photos')
+                    ->directory('Mitra_photos')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(5120)
                     ->required(),
                     Textarea::make('deskripsi') 
-                    ->label('Deskripsi Prestasi')
+                    ->label('Deskripsi Mitra')
                     ->rows(5)
                     ->cols(10)
                     ->nullable() 
-                    ->placeholder('Tulis deskripsi lengkap mengenai Prestasi...'),
+                    ->placeholder('Tulis deskripsi lengkap mengenai Mitra...'),
                     Select::make('prodi_id')
                     ->label('Program Studi')
                     ->preload()
@@ -57,13 +56,13 @@ class PrestasiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('foto')
-                ->label('Foto Prestasi'),
+               Tables\Columns\ImageColumn::make('foto')
+                ->label('Foto Mitra'),
                 Tables\Columns\TextColumn::make('prodi.nama')
                 ->label('Program Studi')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')
-                ->label('Deskripsi Prestasi')
+                ->label('Deskripsi Mitra')
                 ->limit(50),
             ])
             ->filters([
@@ -91,9 +90,9 @@ class PrestasiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPrestasis::route('/'),
-            'create' => Pages\CreatePrestasi::route('/create'),
-            'edit' => Pages\EditPrestasi::route('/{record}/edit'),
+            'index' => Pages\ListMitras::route('/'),
+            'create' => Pages\CreateMitra::route('/create'),
+            'edit' => Pages\EditMitra::route('/{record}/edit'),
         ];
     }
 }
