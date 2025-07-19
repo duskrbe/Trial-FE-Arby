@@ -54,7 +54,7 @@ class AlumniResource extends Resource
                         ->label('Jabatan Alumni')
                         ->nullable() 
                         ->maxLength(255),
-                        Textarea::make('Perusahaan') 
+                        Textarea::make('perusahaan') 
                         ->label('Perusahaan Alumni')
                         ->rows(5)
                         ->cols(10)
