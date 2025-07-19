@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PrestasiResource\Pages;
@@ -32,7 +33,7 @@ class PrestasiResource extends Resource
                 ->description('Isi detail lengkap mengenai Prestasi')
                 ->schema([
                     TextInput::make('nama')
-                    ->label('Nama Prospek Karir')
+                    ->label('Nama Prestasi')
                     ->required()
                     ->maxLength(255),
                     FileUpload::make('foto')

@@ -33,7 +33,7 @@ class MitraResource extends Resource
                 ->description('Isi detail lengkap mengenai Mitra')
                 ->schema([
                     TextInput::make('nama')
-                    ->label('Nama Prospek Karir')
+                    ->label('Nama Mitra')
                     ->required()
                     ->maxLength(255),
                     FileUpload::make('foto')
