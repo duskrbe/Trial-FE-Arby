@@ -55,4 +55,9 @@ class ProgramStudi extends Model
     {
         return $this->hasMany(MataKuliah::class, 'prodi_id');
     }
+
+    public function mitra()
+    {
+        return $this->hasMany(Mitra::class, 'prodi_id');
+    }
 }
