@@ -23,7 +23,7 @@ class MitraResource extends Resource
     protected static ?string $model = Mitra::class;
     protected static ?string $modelLabel = 'Mitra';
     protected static ?string $pluralModelLabel = 'Mitra';
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
