@@ -22,7 +22,7 @@ use App\Filament\Resources\AlumniResource\RelationManagers;
 class AlumniResource extends Resource
 {
     protected static ?string $model = Alumni::class;
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $modelLabel = 'Alumni';
     protected static ?string $pluralModelLabel = 'Alumni';
 
