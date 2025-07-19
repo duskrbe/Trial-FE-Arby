@@ -48,12 +48,13 @@ class DosenResource extends Resource
                             ->maxLength(255)
                             ->placeholder('Contoh: Prof. Dr. Siti Aminah'),
                         
-                        TextInput::make('status')
+                        Select::make('status')
                             ->label('Status Dosen')
-                            ->maxLength(255)
                             ->required()
-                            ->nullable() // Sesuai migrasi, status bisa null
-                            ->placeholder('Contoh: Aktif, Cuti, Pensiun'),
+                            ->options([
+                                'Dosen Tidak Tetap' => 'Dosen Tidak Tetap',
+                                'Dosen Tetap' => 'Dosen Tetap',
+                            ]),
 
                         Select::make('prodi_id')
                             ->label('Program Studi')
@@ -93,6 +94,8 @@ class DosenResource extends Resource
                 
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
+                    ->badge()
+                    ->color(fn($record) => $record->status === 'Dosen Tidak Tetap' ? 'danger' : 'success')
                     ->searchable()
                     ->sortable()
                     ->placeholder('Tidak Ada Status'), // Teks jika status kosong
