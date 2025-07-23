@@ -103,6 +103,7 @@ class ProspekKarirResource extends Resource
             'index' => Pages\ListProspekKarirs::route('/'),
             'create' => Pages\CreateProspekKarir::route('/create'),
             'edit' => Pages\EditProspekKarir::route('/{record}/edit'),
+            'view' => Pages\ViewProspekKarir::route('/{record}'),
         ];
     }
 }

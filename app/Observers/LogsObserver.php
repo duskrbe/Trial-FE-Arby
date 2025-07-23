@@ -61,12 +61,22 @@ class LogsObserver
         $notification = Notification::make()
             ->title($log->user->name)
             ->body("Telah $label data pada tabel $tableLabel$fieldChanges. Tanggal $log->created_at")
-            ->success()
-            ->actions([
-                \Filament\Notifications\Actions\Action::make('Lihat')
-                    ->button()
-                    ->url(self::generateViewUrl($log), shouldOpenInNewTab: true)
-            ]);
+            ->success();
+
+            // Tambahkan tombol "Lihat" hanya jika data belum dihapus
+            if (self::canViewLog($log)) {
+                $notification->actions([
+                    \Filament\Notifications\Actions\Action::make('Lihat')
+                        ->button()
+                        ->url(self::generateViewUrl($log), shouldOpenInNewTab: true)
+                ]);
+            }
+
+            // ->actions([
+            //     \Filament\Notifications\Actions\Action::make('Lihat')
+            //         ->button()
+            //         ->url(self::generateViewUrl($log), shouldOpenInNewTab: true)
+            // ]);
 
         // Kirim hanya ke user yang sedang login (pembuat log)
         $notification->sendToDatabase($user);
@@ -93,7 +103,42 @@ class LogsObserver
         $resourceClass = $resourceMap[$log->table_name] ?? null;
 
         return $resourceClass && method_exists($resourceClass, 'getUrl')
-            ? $resourceClass::getUrl('view', ['record' => $log->record_id], shouldOpenInNewTab: true)
+            ? $resourceClass::getUrl('view', ['record' => $log->record_id])
             : null;
     }
+    //METHOD UNTUK SOFT DELTE DAN DELETE UNTUK MENGHILANKAN TOMBOL LIHAT
+    protected static function canViewLog(Logs $log): bool
+{
+    // Aksi hapus permanen tidak bisa dilihat
+    if (in_array($log->action, ['SOFT_DELETE', 'DELETE'])) {
+        return false;
+    }
+
+    // Pastikan resource dan model ada
+    $resourceMap = [
+        'akreditasi'  => \App\Filament\Resources\AkreditasiResource::class,
+        'alumni'    => \App\Filament\Resources\AlumniResource::class,
+        'banner_prodi' => \App\Filament\Resources\BannerProdiResource::class,
+        'dosen'    => \App\Filament\Resources\DosenResource::class,
+        'fasilitas' => \App\Filament\Resources\FasilitasResource::class ,
+        'kurikulum' => \App\Filament\Resources\KurikulumResource::class,
+        'mata_kuliah' => \App\Filament\Resources\MataKuliahResource::class,
+        'mitra' => \App\Filament\Resources\MitraResource::class,
+        'penelitian' => \App\Filament\Resources\PenelitianResource::class,
+        'prestasi' => \App\Filament\Resources\PrestasiResource::class,
+        'program_studi' => \App\Filament\Resources\ProgramStudiResource::class,
+        'prospek_karir' => \App\Filament\Resources\ProspekKarirResource::class,
+        'spotlight' => \App\Filament\Resources\SpotlightResource::class,
+    ];
+
+    $resourceClass = $resourceMap[$log->table_name] ?? null;
+
+    if (! $resourceClass || ! method_exists($resourceClass, 'getModel')) {
+        return false;
+    }
+
+    $modelClass = $resourceClass::getModel();
+
+    return $modelClass::query()->find($log->record_id) !== null;
+}
 }

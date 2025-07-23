@@ -111,6 +111,7 @@ class ProgramStudiResource extends Resource
             'index' => Pages\ListProgramStudis::route('/'),
             'create' => Pages\CreateProgramStudi::route('/create'),
             'edit' => Pages\EditProgramStudi::route('/{record}/edit'),
+            'view' => Pages\ViewProgramStudi::route('/{record}'),
         ];
     }
 }

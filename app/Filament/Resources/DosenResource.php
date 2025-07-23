@@ -141,6 +141,7 @@ class DosenResource extends Resource
             'index' => Pages\ListDosens::route('/'),
             'create' => Pages\CreateDosen::route('/create'),
             'edit' => Pages\EditDosen::route('/{record}/edit'),
+            'view' => Pages\ViewDosen::route('/{record}'),
         ];
     }
 }

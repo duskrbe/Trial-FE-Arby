@@ -104,6 +104,7 @@ class FasilitasResource extends Resource
             'index' => Pages\ListFasilitas::route('/'),
             'create' => Pages\CreateFasilitas::route('/create'),
             'edit' => Pages\EditFasilitas::route('/{record}/edit'),
+            'view' => Pages\ViewFasilitas::route('/{record}'),
         ];
     }
 }
