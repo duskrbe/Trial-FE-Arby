@@ -2,21 +2,39 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\AuthenticateSession;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
+use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Routing\Middleware\SubstituteBindings;
+use Filament\View\PanelsRenderHook;
+use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Filament\Http\Middleware\AuthenticateSession;
+use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+
+use App\Filament\Resources\AkreditasiResource;
+use App\Filament\Resources\AlumniResource; // Asumsi nama Resource Alumni
+use App\Filament\Resources\BannerProdiResource; // Asumsi nama Resource Banner Prodi
+use App\Filament\Resources\DosenResource;
+use App\Filament\Resources\FasilitasResource; // Asumsi nama Resource Fasilitas
+use App\Filament\Resources\KurikulumResource; // Asumsi nama Resource Kurikulum
+use App\Filament\Resources\MataKuliahResource;
+use App\Filament\Resources\MitraResource; // Asumsi nama Resource Mitra
+use App\Filament\Resources\PenelitianResource; // Asumsi nama Resource Penelitian
+use App\Filament\Resources\PrestasiResource; // Asumsi nama Resource Prestasi
+use App\Filament\Resources\ProgramStudiResource;
+use App\Filament\Resources\ProspekKarirResource;
+use App\Filament\Resources\SpotlightResource;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -53,6 +71,42 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(PanelsRenderHook::SIDEBAR_NAV_START, fn () => view('filament.components.navigation-filter'))
+            ->navigation(function(NavigationBuilder $builder): NavigationBuilder {
+                return $builder
+                    ->items([
+                        NavigationItem::make('Dashboard')
+                        ->icon('heroicon-o-home')
+                        ->url(Pages\Dashboard::getUrl())
+                    ])
+                    ->groups([
+                        NavigationGroup::make('Manajemen Program Studi')
+                            ->items([
+                                // Resources yang terkait langsung dengan Program Studi
+                                ...ProgramStudiResource::getNavigationItems(),
+                                ...BannerProdiResource::getNavigationItems(),
+                                ...AkreditasiResource::getNavigationItems(),
+                                ...KurikulumResource::getNavigationItems(),
+                                ...MataKuliahResource::getNavigationItems(),
+                                ...DosenResource::getNavigationItems(),
+                                ...ProspekKarirResource::getNavigationItems(),
+                                ...SpotlightResource::getNavigationItems(),
+                            ]),
+                        NavigationGroup::make('Data Pendukung Kampus')
+                            ->items([
+                                // Resources data pendukung
+                                ...AlumniResource::getNavigationItems(),
+                                ...FasilitasResource::getNavigationItems(),
+                                ...MitraResource::getNavigationItems(),
+                                ...PenelitianResource::getNavigationItems(),
+                                ...PrestasiResource::getNavigationItems(),
+                            ]),
+                        ]);
+
+                        
+
+            });
+            
     }
 }
