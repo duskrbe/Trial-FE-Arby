@@ -48,7 +48,7 @@ class FasilitasResource extends Resource
                     ->directory('fasilitas_photos')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->required()
-                    ->placeholder('Tambahkan foto Fasilitas... (Opsional)')
+                    ->placeholder('Tambahkan foto Fasilitas..')
                     ->maxSize(5120),
                     Select::make('prodi_id')
                     ->label('Program Studi')

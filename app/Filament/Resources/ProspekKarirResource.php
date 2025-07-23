@@ -46,14 +46,14 @@ class ProspekKarirResource extends Resource
                     ->label('Deskripsi Prospek Karir')
                     ->rows(5)
                     ->cols(10)
-                    ->required()
-                    ->placeholder('Tulis deskripsi lengkap mengenai Prospek Karir...'),
+                    ->placeholder('Tulis deskripsi lengkap mengenai Prospek Karir...(opsional)'),
                     FileUpload::make('foto')
                     ->label('Foto Prospek Karir')
                     ->image()
                     ->directory('prospek_karir_photos')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->placeholder('Tambahkan foto Prospek Karir... (Opsional)')
+                    ->placeholder('Tambahkan foto Prospek Karir...')
+                    ->required()
                     ->maxSize(5120),
                 ])
             ]);
