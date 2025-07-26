@@ -70,15 +70,34 @@ class UserResource extends Resource
                             ->multiple() // User bisa punya lebih dari satu peran (misal: admin_prodi dan editor)
                             ->preload() // Memuat semua peran di awal
                             ->required()
-                            ->options(Role::all()->pluck('name', 'name')), // Ambil semua nama peran dari database
+                            ->options(
+                                Role::all()->pluck('name', 'id')->mapWithKeys(function ($name, $id) {
+                                    return [$id => ucwords(str_replace('_', ' ', $name))];
+                                })
+                            )
+                            ->live(), 
                         
                         Select::make('prodi_id')
                             ->label('Program Studi')
-                            ->relationship('prodi', 'nama', fn (Builder $query) => $query, 'prodi_id') // Relasi ke ProgramStudi
+                            ->relationship('prodi', 'nama')
                             ->nullable() // Bisa null untuk Super Admin
                             ->searchable()
                             ->preload()
-                            ->visible(fn (Forms\Get $get): bool => in_array('admin_prodi', $get('roles'))), // Hanya tampil jika peran 'admin_prodi' dipilih
+                            ->visible(function (Forms\Get $get): bool {
+                                $selectedRoleIds = $get('roles'); // Dapatkan ID peran yang dipilih
+
+                                // Pastikan $selectedRoleIds adalah array dan tidak kosong
+                                if (!is_array($selectedRoleIds) || empty($selectedRoleIds)) {
+                                    return false;
+                                }
+
+                                // Ambil nama-nama peran dari ID yang dipilih
+                                // Ini akan melakukan query ke tabel roles
+                                $selectedRoleNames = Role::whereIn('id', $selectedRoleIds)->pluck('name')->toArray();
+
+                                // Cek apakah 'admin_prodi' ada di antara nama-nama peran yang dipilih
+                                return in_array('admin_prodi', $selectedRoleNames);
+                            }),
                     ])
                     ->columns(1),
             ]);
@@ -103,6 +122,7 @@ class UserResource extends Resource
                     ->badge() // Tampilkan sebagai badge
                     ->color('primary')
                     ->searchable()
+                    ->formatStateUsing(fn ($state): string => ucwords(str_replace('_', ' ', $state)))
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('prodi.nama') // Menampilkan nama program studi dari relasi

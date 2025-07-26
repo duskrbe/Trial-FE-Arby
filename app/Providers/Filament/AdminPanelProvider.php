@@ -32,6 +32,7 @@ use App\Filament\Resources\PrestasiResource; // Asumsi nama Resource Prestasi
 use App\Filament\Resources\ProgramStudiResource;
 use App\Filament\Resources\ProspekKarirResource;
 use App\Filament\Resources\SpotlightResource;
+use App\Filament\Resources\UserResource;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
@@ -78,7 +79,11 @@ class AdminPanelProvider extends PanelProvider
                     ->items([
                         NavigationItem::make('Dashboard')
                         ->icon('heroicon-o-home')
-                        ->url(Pages\Dashboard::getUrl())
+                        ->url(Pages\Dashboard::getUrl()),
+                        NavigationItem::make('Manajemen User')
+                        ->icon('heroicon-o-users')
+                        ->url(UserResource::getUrl())
+                        ->visible(auth()->user()->hasRole('super_admin')),
                     ])
                     ->groups([
                         NavigationGroup::make('Manajemen Program Studi')
