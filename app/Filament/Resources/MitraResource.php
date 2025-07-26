@@ -102,6 +102,7 @@ class MitraResource extends Resource
             'index' => Pages\ListMitras::route('/'),
             'create' => Pages\CreateMitra::route('/create'),
             'edit' => Pages\EditMitra::route('/{record}/edit'),
+            'view' => Pages\ViewMitra::route('/{record}'),
         ];
     }
 }

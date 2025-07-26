@@ -7,6 +7,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\MataKuliah;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -105,7 +106,8 @@ class MataKuliahResource extends Resource
                     
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                //
+                ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
@@ -129,6 +131,7 @@ class MataKuliahResource extends Resource
             'index' => Pages\ListMataKuliahs::route('/'),
             'create' => Pages\CreateMataKuliah::route('/create'),
             'edit' => Pages\EditMataKuliah::route('/{record}/edit'),
+            'view' => Pages\ViewMataKuliah::route('/{record}'),
         ];
     }
 }
