@@ -25,6 +25,7 @@ use App\Filament\Resources\BannerProdiResource; // Asumsi nama Resource Banner P
 use App\Filament\Resources\DosenResource;
 use App\Filament\Resources\FasilitasResource; // Asumsi nama Resource Fasilitas
 use App\Filament\Resources\KurikulumResource; // Asumsi nama Resource Kurikulum
+use App\Filament\Resources\LogsResource;
 use App\Filament\Resources\MataKuliahResource;
 use App\Filament\Resources\MitraResource; // Asumsi nama Resource Mitra
 use App\Filament\Resources\PenelitianResource; // Asumsi nama Resource Penelitian
@@ -70,6 +71,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->databaseNotifications()
             ->authMiddleware([
                 Authenticate::class,
             ])
@@ -101,6 +103,7 @@ class AdminPanelProvider extends PanelProvider
                         NavigationGroup::make('Data Pendukung Kampus')
                             ->items([
                                 // Resources data pendukung
+                                ...LogsResource::getNavigationItems(),
                                 ...AlumniResource::getNavigationItems(),
                                 ...FasilitasResource::getNavigationItems(),
                                 ...MitraResource::getNavigationItems(),

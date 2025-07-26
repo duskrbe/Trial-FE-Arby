@@ -130,6 +130,7 @@ class PenelitianResource extends Resource
             'index' => Pages\ListPenelitians::route('/'),
             'create' => Pages\CreatePenelitian::route('/create'),
             'edit' => Pages\EditPenelitian::route('/{record}/edit'),
+            'view' => Pages\ViewPenelitian::route('/{record}'),
         ];
     }
 }

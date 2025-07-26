@@ -146,6 +146,7 @@ class SpotlightResource extends Resource
             'index' => Pages\ListSpotlights::route('/'),
             'create' => Pages\CreateSpotlight::route('/create'),
             'edit' => Pages\EditSpotlight::route('/{record}/edit'),
+            'view' => Pages\ViewSpotlight::route('/{record}'),
         ];
     }
 }

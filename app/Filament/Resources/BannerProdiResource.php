@@ -111,6 +111,7 @@ class BannerProdiResource extends Resource
             'index' => Pages\ListBannerProdis::route('/'),
             'create' => Pages\CreateBannerProdi::route('/create'),
             'edit' => Pages\EditBannerProdi::route('/{record}/edit'),
+            'view' => Pages\ViewBannerProdi::route('/{record}'),
         ];
     }
 }

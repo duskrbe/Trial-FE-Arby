@@ -102,6 +102,7 @@ class PrestasiResource extends Resource
             'index' => Pages\ListPrestasis::route('/'),
             'create' => Pages\CreatePrestasi::route('/create'),
             'edit' => Pages\EditPrestasi::route('/{record}/edit'),
+            'view' => Pages\ViewPrestasi::route('/{record}'),
         ];
     }
 }

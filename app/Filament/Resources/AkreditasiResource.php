@@ -124,6 +124,7 @@ class AkreditasiResource extends Resource
             'index' => Pages\ListAkreditasis::route('/'),
             'create' => Pages\CreateAkreditasi::route('/create'),
             'edit' => Pages\EditAkreditasi::route('/{record}/edit'),
+            'view' => Pages\ViewAkreditasi::route('/{record}'),
         ];
     }
 }

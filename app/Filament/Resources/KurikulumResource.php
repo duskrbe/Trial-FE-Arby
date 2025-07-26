@@ -98,6 +98,7 @@ class KurikulumResource extends Resource
             'index' => Pages\ListKurikulums::route('/'),
             'create' => Pages\CreateKurikulum::route('/create'),
             'edit' => Pages\EditKurikulum::route('/{record}/edit'),
+            'view' => Pages\ViewKurikulum::route('/{record}'),
         ];
     }
 }
