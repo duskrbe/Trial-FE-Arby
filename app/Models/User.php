@@ -44,4 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function prodi()
+    {
+        // Sesuaikan dengan nama foreign key dan primary key jika berbeda dari konvensi
+        return $this->belongsTo(ProgramStudi::class, 'prodi_id', 'id');
+    }
 }
