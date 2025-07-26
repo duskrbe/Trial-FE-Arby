@@ -25,8 +25,34 @@ class PrestasiResource extends Resource
     protected static ?string $pluralModelLabel = 'Prestasi';
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery(); // Selalu mulai dengan query dasar Resource
+
+        // Dapatkan user yang sedang login
+        $user = auth()->user();
+
+        // Jika user bukan 'super_admin', terapkan scoping
+        if ($user && !$user->hasRole('super_admin')) {
+            // Jika user adalah admin_prodi dan memiliki prodi_id
+            if ($user->hasRole('admin_prodi') && $user->prodi_id) {
+                // Filter data berdasarkan prodi_id user yang login
+                $query->where('prodi_id', $user->prodi_id);
+            } else {
+                // Jika user tidak punya peran yang jelas atau tidak punya prodi_id
+                // mereka tidak bisa melihat data prodi mana pun
+                $query->where('prodi_id', null); // Atau query yang tidak mengembalikan hasil
+            }
+        }
+
+        return $query;
+    }
+
     public static function form(Form $form): Form
     {
+        $user = auth()->user();
+        $isAdminProdi = $user && $user->hasRole('admin_prodi');
+        $userProdiId = $user ? $user->prodi_id : null;
         return $form
             ->schema([
                 Section::make('Informasi Prestasi')
@@ -53,6 +79,8 @@ class PrestasiResource extends Resource
                     ->label('Program Studi')
                     ->preload()
                     ->relationship('prodi', 'nama')
+                    ->disabled($isAdminProdi)
+                    ->default($isAdminProdi ? $userProdiId : null)
                     ->required(),
                 ])
             ]);

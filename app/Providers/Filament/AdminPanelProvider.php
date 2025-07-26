@@ -33,6 +33,7 @@ use App\Filament\Resources\PrestasiResource; // Asumsi nama Resource Prestasi
 use App\Filament\Resources\ProgramStudiResource;
 use App\Filament\Resources\ProspekKarirResource;
 use App\Filament\Resources\SpotlightResource;
+use App\Filament\Resources\UserResource;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
@@ -80,13 +81,27 @@ class AdminPanelProvider extends PanelProvider
                     ->items([
                         NavigationItem::make('Dashboard')
                         ->icon('heroicon-o-home')
-                        ->url(Pages\Dashboard::getUrl())
+                        ->url(Pages\Dashboard::getUrl()),
                     ])
                     ->groups([
+                        NavigationGroup::make('Data Master')
+                            ->items([
+                                NavigationItem::make('Manajemen User')
+                                ->icon('heroicon-o-users')
+                                ->url(UserResource::getUrl())
+                                ->visible(auth()->user()->hasRole('super_admin')),
+                                NavigationItem::make('Manajemen Program Studi')
+                                ->url(ProgramStudiResource::getUrl())
+                                ->icon('heroicon-o-book-open')
+                                ->visible(auth()->user()->hasRole('super_admin')),
+                                NavigationItem::make('Riwayat')
+                                ->url(LogsResource::getUrl())
+                                ->icon('heroicon-o-clock')
+                                ->visible(auth()->user()->hasRole('super_admin')),
+                            ]),
                         NavigationGroup::make('Manajemen Program Studi')
                             ->items([
                                 // Resources yang terkait langsung dengan Program Studi
-                                ...ProgramStudiResource::getNavigationItems(),
                                 ...BannerProdiResource::getNavigationItems(),
                                 ...AkreditasiResource::getNavigationItems(),
                                 ...KurikulumResource::getNavigationItems(),
@@ -98,7 +113,6 @@ class AdminPanelProvider extends PanelProvider
                         NavigationGroup::make('Data Pendukung Kampus')
                             ->items([
                                 // Resources data pendukung
-                                ...LogsResource::getNavigationItems(),
                                 ...AlumniResource::getNavigationItems(),
                                 ...FasilitasResource::getNavigationItems(),
                                 ...MitraResource::getNavigationItems(),

@@ -27,6 +27,11 @@ class ProgramStudiResource extends Resource
     protected static ?string $modelLabel = 'Program Studi';
     protected static ?string $pluralModelLabel = 'Program Studi';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasRole('super_admin');
+    }
+
 
     public static function form(Form $form): Form
     {

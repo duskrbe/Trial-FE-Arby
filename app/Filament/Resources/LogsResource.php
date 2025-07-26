@@ -23,6 +23,12 @@ class LogsResource extends Resource
     protected static ?string $modelLabel = 'Logs';
     protected static ?string $navigationIcon = 'heroicon-o-clock';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasRole('super_admin');
+    }
+
+
         //Menyembunyikan menu riwayat di side bar || masih bisa diakses
     // public static function shouldRegisterNavigation(): bool
     // {
