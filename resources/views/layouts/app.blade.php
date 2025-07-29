@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}"/>
     <link rel="stylesheet" href="{{asset('demos/it-business/it-business.css')}}" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @stack('styles')
 </head>
 <body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840"> 
@@ -47,5 +49,29 @@
     <script type="text/javascript" src="{{asset('js/vendors.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
     @stack('scripts')
-</body>
+    <!-- Bootstrap JS Bundle (sudah termasuk Popper) untuk menjalan JS di program-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 3,
+  spaceBetween: 15,
+  loop: false, // Jangan loop kalau hanya 2 atau 3 item
+  centeredSlides: false, // Matikan agar tidak maksa di tengah
+  autoplay: {
+    delay: 1000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    992: { slidesPerView: 3 }
+  }
+});
+</script>
 </html>
