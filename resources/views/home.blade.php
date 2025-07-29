@@ -34,7 +34,7 @@
 
             <!-- Gambar -->
             <div class="col-md-6">
-                <img src="{{ asset('images/sekilas-dkv.jpg') }}" alt="Sekilas DKV" class="img-fluid rounded">
+                <img src="{{ asset('images/demo-it-business.jpg') }}" alt="Sekilas DKV" class="img-fluid rounded">
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
 
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="{{ asset('images/about-dkv.jpg') }}" class="img-fluid rounded" alt="Tentang DKV Petra">
+                    <img src="{{ asset('images/demo-lawyer.jpg') }}" class="img-fluid rounded" alt="Tentang DKV Petra">
                 </div>
                 <div class="col-md-6">
                     <h4 class="fw-semibold mb-3">Visi & Misi</h4>
@@ -76,12 +76,12 @@
     <div class="container-fluid px-0">
         <div class="row g-0 align-items-center">
             <!-- Kolom Gambar -->
-            <div class="col-lg-6">
-                <img src="{{ asset('images/akreditasi-foto.png') }}" alt="Mahasiswa DKV Petra" class="img-fluid w-100 h-100 object-fit-cover">
+            <div class="col-md-6">
+                <img src="{{ asset('images/demo-lawyer.jpg') }}" alt="Mahasiswa DKV Petra" class="img-fluid w-100 h-100 object-fit-cover">
             </div>
 
             <!-- Kolom Teks -->
-            <div class="col-lg-6 bg-dark-blue text-white p-5">
+            <div class="col-md-6 bg-dark-blue text-white p-5">
                 <h5 class="text-warning fw-bold mb-2">Mengapa Berkuliah di</h5>
                 <h2 class="fw-bold text-white mb-4">Visual Communication Design PCU?</h2>
 
@@ -106,28 +106,28 @@
 
             <!-- Kolom 1 -->
             <div class="col-md-2 position-relative">
-                <img src="{{ asset('images/karir-creative-director.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Creative Director">
+                <img src="{{ asset('images/demo-music.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Creative Director">
                 <div class="position-absolute top-0 start-0 p-3 text-white fw-bold fs-3 opacity-50">01</div>
                 <div class="position-absolute bottom-0 start-0 p-3 text-white fw-bold">Creative Director</div>
             </div>
 
             <!-- Kolom 2 -->
             <div class="col-md-2 position-relative">
-                <img src="{{ asset('images/karir-art-director.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Art Director">
+                <img src="{{ asset('images/demo-music.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Art Director">
                 <div class="position-absolute top-0 start-0 p-3 text-white fw-bold fs-3 opacity-50">02</div>
                 <div class="position-absolute bottom-0 start-0 p-3 text-white fw-bold">Art Director</div>
             </div>
 
             <!-- Kolom 3 -->
             <div class="col-md-2 position-relative">
-                <img src="{{ asset('images/karir-art-consultant.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Art Consultant">
+                <img src="{{ asset('images/demo-music.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Art Consultant">
                 <div class="position-absolute top-0 start-0 p-3 text-white fw-bold fs-3 opacity-50">03</div>
                 <div class="position-absolute bottom-0 start-0 p-3 text-white fw-bold">Art Consultant</div>
             </div>
 
             <!-- Kolom 4 -->
             <div class="col-md-2 position-relative">
-                <img src="{{ asset('images/karir-creativepreneur.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Creativepreneur">
+                <img src="{{ asset('images/demo-music.jpg') }}" class="img-fluid w-100 h-100 object-fit-cover" alt="Creativepreneur">
                 <div class="position-absolute top-0 start-0 p-3 text-white fw-bold fs-3 opacity-50">04</div>
                 <div class="position-absolute bottom-0 start-0 p-3 text-white fw-bold">Creativepreneur</div>
             </div>
@@ -151,7 +151,7 @@
             <!-- Prestasi 1 -->
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm">
-                    <img src="{{ asset('images/prestasi-1.jpg') }}" alt="Prestasi 1" class="card-img-top">
+                    <img src="{{ asset('images/demo-music.jpg') }}" alt="Prestasi 1" class="card-img-top">
                     <div class="card-body text-center">
                         <p class="fw-semibold mt-3"> Juara Lomba Desain Nasional</p>
                     </div>
@@ -161,7 +161,7 @@
             <!-- Prestasi 2 -->
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm">
-                    <img src="{{ asset('images/prestasi-2.jpg') }}" alt="Prestasi 2" class="card-img-top">
+                    <img src="{{ asset('images/demo-music.jpg') }}" alt="Prestasi 2" class="card-img-top">
                     <div class="card-body text-center">
                         <p class="fw-semibold mt-3">Karya Dipamerkan Internasional</p>
                     </div>
@@ -171,7 +171,7 @@
             <!-- Prestasi 3 -->
             <div class="col-md-4">
                 <div class="card h-100 border-0 shadow-sm">
-                    <img src="{{ asset('images/prestasi-3.jpg') }}" alt="Prestasi 3" class="card-img-top">
+                    <img src="{{ asset('images/demo-music.jpg') }}" alt="Prestasi 3" class="card-img-top">
                     <div class="card-body text-center">
                         <p class="fw-semibold mt-3">Kolaborasi Industri Kreatif</p>
                     </div>
