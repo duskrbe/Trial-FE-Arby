@@ -4,9 +4,9 @@
             <div class="container-fluid">
                 <div class="col-auto col-xxl-3 col-lg-2 me-lg-0 me-auto">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('images/logo-white.png') }}" alt="Logo" class="default-logo">
-                        <img src="{{ asset('images/logo-black.png') }}" alt="Logo Black" class="alt-logo">
-                        <img src="{{ asset('images/logo-black.png') }}" alt="Mobile Logo" class="mobile-logo">
+                        <img src="{{ asset('images/demo-it-business-logo-white.png') }}" alt="Logo" class="default-logo">
+                        <img src="{{ asset('images/demo-it-business-logo-black.png') }}" alt="Logo Black" class="alt-logo">
+                        <img src="{{ asset('images/demo-it-business-logo-black.png') }}" alt="Mobile Logo" class="mobile-logo">
                     </a>
                 </div>
                 <div class="col-auto col-xxl-6 col-lg-8 menu-order position-static">

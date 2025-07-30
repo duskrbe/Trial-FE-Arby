@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html class="no-js" lang="id">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @stack('styles')
 </head>
-<body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#252840"> 
+<body data-mobile-nav-style="full-screen-menu" data-mobile-nav-bg-color="#3a3d53"> 
 
     @include('partials.header')
 
@@ -37,12 +37,12 @@
 
     @include('partials.footer')
 
-    <!-- start scroll progress -->
-    <div class="scroll-progress d-none d-xxl-block">
-        <a href="#" class="scroll-top" aria-label="scroll">
-            <span class="scroll-text">Scroll to top</span><span class="scroll-line"><span class="scroll-point"></span></span>
-        </a>
-    </div>
+        <!-- start scroll progress -->
+        <div class="scroll-progress d-none d-xxl-block">
+            <a href="#" class="scroll-top" aria-label="scroll">
+                <span class="scroll-text">Scroll</span><span class="scroll-line"><span class="scroll-point"></span></span>
+            </a>
+        </div>
     <!-- end scroll progress -->
     <!-- javascript libraries -->
     <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
